@@ -7,13 +7,22 @@
  */
 
 import * as React from 'react';
+import { history } from "../_helpers";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
+import LoginPage from 'Pages/LoginPage/LoginPage';
+import AdminPage from 'Pages/AdminPage/AdminPage';
+import { DashboardPage } from 'Pages';
+
 
 export function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        Let's Create something greate!
-      </header>
-    </div>
+    <Router history={history}>
+        <Switch>
+          <Route path="/login" component={LoginPage} />
+          <Route path="/dashboard" component={DashboardPage} />
+          <Route path="/admin" component={AdminPage} />
+          <Redirect from="*" to="/" />
+        </Switch>
+    </Router>
   );
 }
